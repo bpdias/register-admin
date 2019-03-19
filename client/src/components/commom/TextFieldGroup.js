@@ -17,7 +17,7 @@ const TextFieldGroup = ({
 }) => {
   return (
     <Aux>
-      <div className="form">
+      <div className="textFieldGroup">
         <input
           type={type}
           className={classnames('some someother', { 'is-invalid': error })}

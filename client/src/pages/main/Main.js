@@ -1,6 +1,4 @@
 /* eslint-disable indent */
-
-
 import React, {
     Component
 } from 'react';
