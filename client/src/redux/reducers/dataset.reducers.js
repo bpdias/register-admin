@@ -6,8 +6,7 @@ import {
     FECTH_DATASET_IS_LOADING,
     FECTH_DATASET_ERROR,
     ADD_DATASET_SUCCESS,
-    ADD_DATASET_IS_LOADING,
-    ADD_DATASET_ERROR,
+    UPDATE_DATASET_SUCCESS,
 } from '../constants/dataset.constants';
 
 
@@ -15,7 +14,8 @@ const defaultDataset = {
     datasets: [],
     dataset: {},
     isLoading: false,
-    error: false
+    error: false,
+    isDeleted: false,
 }
 
 export const addDataset = (state = defaultDataset, action) => {
@@ -31,6 +31,18 @@ export const addDataset = (state = defaultDataset, action) => {
     }
 };
 
+export const updateDataset = (state = defaultDataset, action) => {
+    switch (action.type) {
+        case UPDATE_DATASET_SUCCESS:
+            return {
+                ...state,
+                dataset: action.dataset,
+                error: false,
+            };
+        default:
+            return state;
+    }
+};
 
 export const datasetIsLoading = (state = true, action) => {
     switch (action.type) {
@@ -75,6 +87,23 @@ export const getDataset = (state = defaultDataset, action) => {
                 ...state,
                 dataset: action.dataset,
                 error: false,
+            };
+        case FECTH_DATASET_ERROR:
+            return {
+                ...state,
+                error: true,
+            };
+        default:
+            return state;
+    }
+};
+
+export const deleteDataset = (state = defaultDataset, action) => {
+    switch (action.type) {
+        case FECTH_DATASET_SUCCESS:
+            return {
+                ...state,
+                isDeleted: true,
             };
         case FECTH_DATASET_ERROR:
             return {

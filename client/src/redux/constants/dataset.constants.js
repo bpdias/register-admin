@@ -7,5 +7,10 @@ export const FECTH_DATASET_IS_LOADING =         'FECTH_DATASET_IS_LOADING';
 export const FECTH_DATASET_ERROR =              'FECTH_DATASET_ERROR';
 
 export const ADD_DATASET_SUCCESS =           'ADD_DATASET_SUCCESS';
-export const ADD_DATASET_IS_LOADING =        'ADD_DATASET_IS_LOADING';
 export const ADD_DATASET_ERROR =             'ADD_DATASET_ERROR';
+
+export const UPDATE_DATASET_SUCCESS =           'UPDATE_DATASET_SUCCESS';
+export const UPDATE_DATASET_ERROR =             'UPDATE_DATASET_ERROR';
+
+export const DELETE_DATASET_SUCCESS =           'DELETE_DATASET_SUCCESS';
+export const DELETE_DATASET_ERROR =             'DELETE_DATASET_ERROR';

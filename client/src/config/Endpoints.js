@@ -4,3 +4,5 @@
 export const DATASETS = 'all';
 export const DATASET = 'record/';
 export const ADD_DATASET = 'create';
+export const UPDATE_DATASET = 'update';
+export const DELETE_DATASET = 'destroy/';

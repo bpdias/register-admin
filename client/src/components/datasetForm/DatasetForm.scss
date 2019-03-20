@@ -91,6 +91,14 @@
     }
   }
 
+  &__radio-input--blacklist {
+    border: 5px solid red;
+
+    &::after {
+        background-color: red;
+    }
+  }
+
   &__radio-input:checked ~ &__radio-label &__radio-button:after {
     opacity: 1;
   }

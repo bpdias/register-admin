@@ -3,6 +3,7 @@ import * as Endpoints from '../../config/Endpoints';
 import {
     get,
     post,
+    del,
 } from '../../helpers/javascripts/ajaxHelpers';
 
 import {
@@ -13,9 +14,17 @@ import {
     FECTH_DATASET_IS_LOADING,
     FECTH_DATASET_ERROR,
     ADD_DATASET_SUCCESS,
-    ADD_DATASET_IS_LOADING,
     ADD_DATASET_ERROR,
+    UPDATE_DATASET_SUCCESS,
+    UPDATE_DATASET_ERROR,
+    DELETE_DATASET_SUCCESS,
+    DELETE_DATASET_ERROR,
 } from '../constants/dataset.constants';
+
+const deleteDatasetSuccess = dataset => ({
+    type: DELETE_DATASET_SUCCESS,
+    dataset,
+});
 
 const addDatasetSuccess = dataset => ({
     type: ADD_DATASET_SUCCESS,
@@ -24,6 +33,16 @@ const addDatasetSuccess = dataset => ({
 
 const addDatasetError = err => ({
     type: ADD_DATASET_ERROR,
+    payload: err.response,
+});
+
+const updateDatasetSuccess = dataset => ({
+    type: UPDATE_DATASET_SUCCESS,
+    dataset,
+});
+
+const updateDatasetError = err => ({
+    type: UPDATE_DATASET_ERROR,
     payload: err.response.data,
 });
 
@@ -56,6 +75,10 @@ const fetchDatasetError = () => ({
     type: FECTH_DATASET_ERROR,
 });
 
+const deleteDatasetError = () => ({
+    type: DELETE_DATASET_ERROR,
+});
+
 
 export const fetchAllDatasets = () => ((dispatch) => {
     dispatch(fetchAllDatasetsIsLoading(true));
@@ -74,7 +97,7 @@ export const fetchAllDatasets = () => ((dispatch) => {
 export const fetchDataset = id => ((dispatch) => {
     dispatch(fetchDatasetIsLoading(true));
 
-    return get(`${Endpoints.DATASET}1552835784144`)
+    return get(`${Endpoints.DATASET + id}`)
         .then((response) => {
             dispatch(fetchDatasetSuccess(response));
             dispatch(fetchDatasetIsLoading(false));
@@ -88,8 +111,30 @@ export const fetchDataset = id => ((dispatch) => {
 export const addDataset = data => ((dispatch) => {
     post(Endpoints.ADD_DATASET, data).then((response) => {
         dispatch(addDatasetSuccess(response));
+        dispatch(fetchAllDatasets());
+        dispatch(fetchDataset(response.id));
     })
     .catch((err) => {
         dispatch(addDatasetError(err));
     });
+});
+
+export const updateDataset = data => ((dispatch) => {
+    post(Endpoints.UPDATE_DATASET, data).then((response) => {
+        dispatch(updateDatasetSuccess(response));
+        dispatch(fetchDataset(response.id));
+    })
+    .catch((err) => {
+        dispatch(updateDatasetError(err));
+    });
+});
+
+export const deleteDataset = id => ((dispatch) => {
+    return del(`${Endpoints.DELETE_DATASET + id}`)
+        .then((response) => {
+            dispatch(deleteDatasetSuccess(response));
+        })
+        .catch((err) => {
+            dispatch(deleteDatasetError(err));
+        });
 });

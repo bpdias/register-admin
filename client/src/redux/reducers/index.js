@@ -7,7 +7,8 @@ import {
     allDatasetsIsLoading,
     getDataset,
     datasetIsLoading,
-    addDataset
+    addDataset,
+    deleteDataset
 } from './dataset.reducers';
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
     allDatasetsIsLoading,
     getDataset,
     datasetIsLoading,
-    addDataset
+    addDataset,
+    deleteDataset
 })

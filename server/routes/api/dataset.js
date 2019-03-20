@@ -129,9 +129,14 @@ router.get('/all', (req, res) => {
 // @route   DELETE api/dataset/:id
 // @desc    Delete Dataset Route
 // @access  Public
-router.delete('/:id', (req, res) => {
-    Dataset.findOneAndRemove({id: req.body.id})
-        .then(() => res.json({ success: true }))
+router.delete('/destroy/:id', (req, res) => {
+    console.log(req.params.id);
+    
+    Dataset.findOneAndRemove({id: req.params.id})
+        .then((response) => {
+            res.json({ success: true })
+        })
+    
 })
 
 module.exports = router;
