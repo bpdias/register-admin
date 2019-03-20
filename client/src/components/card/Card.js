@@ -17,8 +17,8 @@ class Card extends Component {
         >
           <div className="card">
             <div className="card__text">
-              <h3 className="heading-info">{dataset.name}</h3>
-              <p>{dataset.dataset}</p>
+              <h3 className="card__info-name">{dataset.name}</h3>
+              <p className="card__info-dataset">{dataset.dataset}</p>
             </div>
             <figcaption className="card__caption">Click To Edit</figcaption>
           </div>
