@@ -20,6 +20,7 @@ class Card extends Component {
               <h3 className="heading-info">{dataset.name}</h3>
               <p>{dataset.dataset}</p>
             </div>
+            <figcaption className="card__caption">Click To Edit</figcaption>
           </div>
         </Link>
       </div>

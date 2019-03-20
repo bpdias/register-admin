@@ -37,6 +37,7 @@ class DatasetForm extends Component {
                 type="radio"
                 className="form__radio-input"
                 id="cpf"
+                checked
                 name="datasetType"
               />
               <label htmlFor="cpf" className="form__radio-label">

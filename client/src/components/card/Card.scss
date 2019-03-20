@@ -9,4 +9,60 @@
   padding: 6rem;
   font-size: 1.2rem;
   margin-bottom: .4rem;
+  position: relative;
+  cursor: pointer;
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 2.3rem;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, 0%);
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center; 
+    color: $color-gray-dark;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover {
+    background-color: rgba($color-scondary-dark, .4 );
+
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    width: 80%;
+    transform: translate(0%, -50%);
+  }
+
+  &__text {
+    text-align: center;
+  }
+
+  &:hover &__text {
+    filter: blur(1.6px) brightness(30%);
+  }
+
+  @keyframes fadeIn{
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+      }
+  }
 }
