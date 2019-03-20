@@ -1,49 +1,36 @@
 /* eslint-disable indent */
-import React, {
-    Component
-} from 'react';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Dataset from '../../components/dataset';
-
-import {
-    connect
-} from 'react-redux';
-
 import {
     fetchAllDatasets,
-    fetchDataset
 } from '../../redux/actions/dataset.actions';
-
-
 import './mains.scss';
 
 class Main extends Component {
-    componentDidMount() {
-        this.props._onInitDatasets();
-        this.props._onInitDataset();
-    }
+  componentDidMount() {
+    this.props._onInitDatasets();
+  }
 
-    render() {
-        return (
-            <div className='main'>
-                <Dataset />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="main">
+        <Dataset datasets={this.props.datasets} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        datasets: state.datasets,
-        dataset: state.dataset
-    }
-}
+  return {
+    datasets: state.allDatasets.datasets,
+  };
+};
 
-const mapDispatchToProps = dispatch => {
-    return{
-        _onInitDatasets: () => dispatch(fetchAllDatasets()),
-        _onInitDataset: () => dispatch(fetchDataset())
-    }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    _onInitDatasets: () => dispatch(fetchAllDatasets()),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

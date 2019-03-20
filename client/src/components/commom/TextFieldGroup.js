@@ -5,31 +5,27 @@ import classnames from 'classnames';
 import Aux from '../../hocs/Aux';
 
 const TextFieldGroup = ({
+  id,
   name,
   placeholder,
   value,
-  label,
-  error,
-  info,
   type,
   onChange,
   disable,
+  inputClass,
 }) => {
   return (
     <Aux>
-      <div className="textFieldGroup">
-        <input
-          type={type}
-          className={classnames('some someother', { 'is-invalid': error })}
-          placeholder={placeholder}
-          name={name}
-          value={value}
-          onChange={onChange}
-          disabled={disable}
-        />
-        {info && <small className="text-muted">{info}</small>}
-        {error && <div className="classeErro">{error}</div>}
-      </div>
+      <input
+        id={id}
+        type={type}
+        className={inputClass}
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+        disabled={disable}
+      />
     </Aux>
   );
 };

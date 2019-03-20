@@ -4,6 +4,7 @@ import TextFieldGroup from '../commom/TextFieldGroup';
 import {
   addDataset,
 } from '../../redux/actions/dataset.actions';
+import './DatasetForm.scss';
 
 
 class DatasetForm extends Component {
@@ -28,31 +29,61 @@ class DatasetForm extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <TextFieldGroup
-            onChange={this.onChange}
-            placeholder="company name"
-            name="name"
-            type="text"
-          />
+      <section className="dataset-form">
+        <form onSubmit={this.onSubmit} className="form">
+          <div className="form__group">
+            <div className="form__radio-group">
+              <input
+                type="radio"
+                className="form__radio-input"
+                id="cpf"
+                name="datasetType"
+              />
+              <label htmlFor="cpf" className="form__radio-label">
+                <span className="form__radio-button" />
+                CPF
+              </label>
+            </div>
+            <div className="form__radio-group">
+              <input
+                type="radio"
+                className="form__radio-input"
+                id="cnpj"
+                name="datasetType"
+              />
+              <label htmlFor="cnpj" className="form__radio-label">
+                <span className="form__radio-button" />
+                CNPJ
+              </label>
+            </div>
+          </div>
+          
+          <div className="form__group">
+            <TextFieldGroup
+              placeholder="Who Are You?"
+              inputClass="form__input"
+              id="1"
+              type="text"
+              name="name"
+              onChange={this.onChange}
+            />
+            <label htmlFor="name" className="form__label">Who Are You?</label>
+          </div>
 
-          <TextFieldGroup
-            onChange={this.onChange}
-            placeholder="cpf"
-            name="dataset"
-            type="text"
-          />
-
-          <TextFieldGroup
-            placeholder="cpf"
-            name="dataset"
-            type="submit"
-            value="submit"
-            onChange={this.onChange}
-          />
+          <div className="form__group">
+            <TextFieldGroup
+              placeholder="Insert Your CPF"
+              inputClass="form__input"
+              id="2"
+              type="text"
+              name="cpf"
+              onChange={this.onChange}
+            />
+            <label htmlFor="cpf" className="form__label">Insert Your CPF</label>
+          </div>
         </form>
-      </div>
+        <a href="#" className="btn btn--white btn--animated">Submit your Info</a>
+      </section>
     );
   }
 }

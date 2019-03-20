@@ -1,26 +1,25 @@
 @import '../../helpers/stylesheets/Base';
 
 .dataset {
-    height: 85vh;
+    height: 95vh;
     background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.8),
-        rgba($color-primary-dark, 0.8));
+        rgba($color-primary-dark, 0.8)),
+        url('../../assets/images/hero.jpg'
+    );
     background-size: cover;
     background-position: top;
     position: relative;
 
+    clip-path: polygon(0 0, 100% 0, 100% 75vh,0 100%);
+    
     &__form-box {
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        width: 50%;
-    }
-
-    &__card-section {
-      box-shadow: 0 3rem 6rem rgba($color-black, .1);
     }
 }
 
@@ -31,7 +30,7 @@
     backface-visibility: hidden;
     margin-bottom: 6rem;
 
-    &__main {
+    &--main {
         display: block;
         font-size: 6rem;
         font-weight: 400;
@@ -42,7 +41,7 @@
         animation-timing-function: ease-out;
     }
 
-    &__sub {
+    &--sub {
         display: block;
         font-size: 2rem;
         font-weight: 700;
