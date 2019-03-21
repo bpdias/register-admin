@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import Aux from '../../hocs/Aux';
 import DatasetForm from '../datasetForm';
 import Card from '../card';
+import Select from '../form/select/Select';
+
 import Spinner from '../spinner';
 import './Dataset.scss';
 
 class Dataset extends Component {
+
+  onChange = (e) => {
+    console.log(e.target.value);
+  }
+
   render() {
     let cards = null;
     if (this.props.datasets && this.props.match.isExact) {
@@ -51,7 +57,31 @@ class Dataset extends Component {
               <Route path="/record/:id" exact component={DatasetForm} />
           </div>
         </section>
-          
+        <section className="filter">
+          <div className="filter__box">
+            <div className="form__group">
+              <Select
+                name="Order By"
+                onChange={this.onChange}
+                options={[
+                  'Cpf',
+                  'Cnpj',
+                ]}
+              />
+
+              <Select
+                name="Filter By"
+                onChange={this.onChange}
+                options={[
+                  'Cpf',
+                  'Cnpj',
+                ]}
+              />
+
+            </div>
+          </div>
+        </section>
+
         <section className="dataset__card-section">
           <Route path="/" exact render={() => cards} />
           <Route path="/record/:id" exact render={() => cards} />
