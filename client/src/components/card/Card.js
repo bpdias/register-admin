@@ -8,12 +8,13 @@ import './Card.scss';
 
 class Card extends Component {
     componentDidMount = () => {
-      this.props._onInitDataset(this.props.match.params.id);
+        const paramsId = this.props.match.params.id;
+        if(paramsId) this.props._onInitDataset(paramsId);
     }
 
     formatText = () => {
       let text = '';
-      const dataset = this.props.cardInfo;
+      const dataset = this.props.data;
       if (dataset) {
         if (dataset.data_type === 'cpf') {
           text = formatCpf(dataset.dataset);
@@ -25,7 +26,7 @@ class Card extends Component {
     }
 
     render() {
-      const { ...dataset } = this.props.cardInfo;
+      const { ...dataset } = this.props.data;
       return (
         <div className="row">
           <Link

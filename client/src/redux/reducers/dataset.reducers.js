@@ -19,19 +19,6 @@ const defaultDataset = {
   error: false,
 };
 
-export const addDataset = (state = defaultDataset, action) => {
-  switch (action.type) {
-    case ADD_DATASET_SUCCESS:
-      return {
-        ...state,
-        dataset: action.dataset,
-        error: false,
-      };
-    default:
-      return state;
-  }
-};
-
 export const updateDataset = (state = defaultDataset, action) => {
   switch (action.type) {
     case UPDATE_DATASET_SUCCESS:
@@ -82,6 +69,20 @@ export const allDatasets = (state = defaultAllDatasets, action) => {
   }
 };
 
+export const addDataset = (state = defaultDataset, action) => {
+    switch (action.type) {
+      case ADD_DATASET_SUCCESS:
+        return {
+          ...state,
+          dataset: action.dataset,
+          error: false,
+        };
+      default:
+        return state;
+    }
+};
+
+  
 export const getDataset = (state = defaultDataset, action) => {
   switch (action.type) {
     case FECTH_DATASET_SUCCESS:

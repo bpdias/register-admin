@@ -17,7 +17,7 @@ class Dataset extends Component {
           {this.props.datasets.map((dataset) => {
             return (
               <Card
-                cardInfo={dataset}
+                data={dataset}
                 key={dataset.id}
               />
             );
@@ -27,7 +27,7 @@ class Dataset extends Component {
     } else if (this.props.dataset) {
       cards = (
         <Card
-          cardInfo={this.props.dataset}
+          data={this.props.dataset}
           key={this.props.dataset.id}
         />
       );

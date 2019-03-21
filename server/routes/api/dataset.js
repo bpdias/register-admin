@@ -27,7 +27,7 @@ router.post('/create', (req, res) => {
         errors,
         isValid
     } = validateDatasetInput(req.body);
-
+    
     // Check Validation
     if (!isValid) {
         return res.status(400).json(errors);
@@ -107,7 +107,7 @@ router.get('/record/:id', (req, res) => {
         })
         .then(dataset => {
             if (!dataset) {
-                errors.noDataset = "CPF/CNPJ not found";
+                errors.error = "CPF/CNPJ not found";
                 res.status(404).json(errors);
             }
 

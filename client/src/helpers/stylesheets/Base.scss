@@ -9,6 +9,9 @@ $color-gray-dark-2: #999;
 $color-white: #fff;
 $color-black: #000;
 
+$color-error:#D8000C;
+$color-success: #4F8A10;
+
 
 // Animations
 @keyframes moveInLeft{
@@ -58,18 +61,16 @@ $color-black: #000;
 }
 
  .btn {
-    &:visited,
-    &:link {
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 1.5rem 4rem;
-      display: inline-block;
-      border-radius: 10rem;
-      transition: all .2s;
-      position: relative;
-      font-size: 1.6rem;
-    }
-
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
+    cursor: pointer;
+    
     &:hover {
       transform: translateY(-3px);
       box-shadow: 0 1rem 2rem rgba($color-black, .2);
@@ -96,5 +97,16 @@ $color-black: #000;
       left: 0;
       z-index: -1;
       transition: all .4s;
+    }
+
+    &--alert {
+        background-color: transparent;
+        border: transparent;
+        margin-left: 6rem;
+        &:hover {
+            transform: translateY(-3px);
+            border-color: $color-gray-dark;
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        }
     }
  }

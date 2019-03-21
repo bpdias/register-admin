@@ -31,7 +31,7 @@ const addDatasetSuccess = dataset => ({
     dataset,
 });
 
-const addDatasetError = err => ({
+export const addDatasetError = err => ({
     type: ADD_DATASET_ERROR,
     payload: err.response,
 });
