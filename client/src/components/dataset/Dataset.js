@@ -47,14 +47,14 @@ class Dataset extends Component {
               <span className="heading-primary__main">Neoway</span>
               <span className="heading-primary__sub">Save your info to work with us</span>
             </h1>
-                <Route path="/" exact component={DatasetForm} />
-                <Route path="/record/:id" exact component={DatasetForm} />
+              <Route path="/" exact component={DatasetForm} />
+              <Route path="/record/:id" exact component={DatasetForm} />
           </div>
         </section>
           
         <section className="dataset__card-section">
-            <Route path="/" exact render={() => cards} />
-            <Route path="/record/:id" exact render={() => cards} />
+          <Route path="/" exact render={() => cards} />
+          <Route path="/record/:id" exact render={() => cards} />
         </section>
       </Aux>
     );
@@ -62,9 +62,9 @@ class Dataset extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-      dataset: state.getDataset.dataset,
-    };
+  return {
+    dataset: state.getDataset.dataset,
+  };
 };
 
 export default withRouter(connect(mapStateToProps, null)(Dataset))

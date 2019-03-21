@@ -24,6 +24,7 @@ class Main extends Component {
 const mapStateToProps = (state) => {
   return {
     datasets: state.allDatasets.datasets.reverse(),
+    isLoading: state.allDatasetsIsLoading,
   };
 };
 

@@ -51,7 +51,7 @@ const fetchAllDatasetsSuccess = datasets => ({
     datasets,
 });
 
-const fetchAllDatasetsIsLoading = isLoading => ({
+const fetchIsLoadingAllDatasets = isLoading => ({
     type: FECTH_ALL_DATASETS_IS_LOADING,
     isLoading,
 });
@@ -81,16 +81,16 @@ const deleteDatasetError = () => ({
 
 
 export const fetchAllDatasets = () => ((dispatch) => {
-    dispatch(fetchAllDatasetsIsLoading(true));
+    dispatch(fetchIsLoadingAllDatasets(true));
 
     return get(Endpoints.DATASETS)
         .then((response) => {
             dispatch(fetchAllDatasetsSuccess(response));
-            dispatch(fetchAllDatasetsIsLoading(false));
+            dispatch(fetchIsLoadingAllDatasets(false));
         })
         .catch(() => {
             dispatch(fetchAllDatasetsError());
-            dispatch(fetchAllDatasetsIsLoading(false));
+            dispatch(fetchIsLoadingAllDatasets(false));
         });
 });
 

@@ -13,7 +13,7 @@ import {
 } from '../../helpers/javascripts/masks';
 import {
   isCpf,
-  isCnpj
+  isCnpj,
 } from '../../helpers/javascripts/validations';
 
 import './DatasetForm.scss';
@@ -59,7 +59,7 @@ class DatasetForm extends Component {
     console.log(this.props);
     
     if (dataType === 'cpf') {
-      if (true) {
+      if (isCpf(this.state.dataset)) {
         id ? this.props._onUpdateDataset(this.state) : this.props._onAddDataset(this.state)
       } else {
         console.log('cpf invalido');
@@ -178,10 +178,10 @@ class DatasetForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-      dataset: state.getDataset.dataset,
-      isDeleted: state.deleteDataset.isDeleted,
-    };
+  return {
+    dataset: state.getDataset.dataset,
+    isDeleted: state.deleteDataset.isDeleted,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
