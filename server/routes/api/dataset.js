@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Dataset = require('../../models/Dataset');
+const crypto = require('crypto');
 
 // Load input validator
 const validateDatasetInput = require('../../validation/dataset');
@@ -17,6 +18,11 @@ router.get('/test', (req, res) => res.json({
 // @desc    Create Dataset Route
 // @access  Public
 router.post('/create', (req, res) => {
+    const secret = req.body.dataset;
+    const hash = crypto.createHmac('sha256', secret)
+                   .update('I love cupcakes')
+                   .digest('hex');
+
     const {
         errors,
         isValid
@@ -37,6 +43,7 @@ router.post('/create', (req, res) => {
                 })
             } else {
                 const newDataset = new Dataset({
+                    id: hash,
                     name: req.body.name,
                     data_type: req.body.data_type,
                     blacklist: req.body.blacklist,

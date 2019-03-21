@@ -23,7 +23,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    datasets: state.allDatasets.datasets,
+    datasets: state.allDatasets.datasets.reverse(),
   };
 };
 

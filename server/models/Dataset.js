@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const DatasetSchema = new Schema({
   id: {
     type: String,
-    default: new Date().getTime()
+    require: true
   },
   name: {
     type: String,

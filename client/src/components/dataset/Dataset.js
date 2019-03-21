@@ -9,8 +9,7 @@ import Spinner from '../spinner';
 import './Dataset.scss';
 
 class Dataset extends Component {
-    render() {
-    
+  render() {
     let cards = null;
     if (this.props.datasets && this.props.match.isExact) {
       cards = (
@@ -25,14 +24,13 @@ class Dataset extends Component {
           })}
         </Aux>
       );
-    } else if (this.props.dataset){
-        cards = (
-            <Card
-                cardInfo={this.props.dataset}
-                key={this.props.dataset.id}
-            />
-        );
-        
+    } else if (this.props.dataset) {
+      cards = (
+        <Card
+          cardInfo={this.props.dataset}
+          key={this.props.dataset.id}
+        />
+      );
     } else {
       cards = (
         <Aux>

@@ -13,6 +13,7 @@ const TextFieldGroup = ({
   onChange,
   disable,
   inputClass,
+  maxlength,
 }) => {
   return (
     <Aux>
@@ -25,6 +26,7 @@ const TextFieldGroup = ({
         value={value}
         onChange={onChange}
         disabled={disable}
+        maxLength={maxlength}
       />
     </Aux>
   );

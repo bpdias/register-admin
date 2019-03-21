@@ -7,8 +7,16 @@ import {
   updateDataset,
   deleteDataset,
 } from '../../redux/actions/dataset.actions';
-import './DatasetForm.scss';
+import {
+  formatCnpj,
+  formatCpf,
+} from '../../helpers/javascripts/masks';
+import {
+  isCpf,
+  isCnpj
+} from '../../helpers/javascripts/validations';
 
+import './DatasetForm.scss';
 
 class DatasetForm extends Component {
   constructor() {
@@ -19,32 +27,52 @@ class DatasetForm extends Component {
       dataset: '',
       blacklist: false,
       data_type: 'cpf',
-      isDeleted: false
+      isDeleted: false,
     };
-  }
-
-  componentDidMount(){
-    const id = this.props.match.params.id;
-    // if(id) this.props._onInitDataset(id);
   }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     this.setState({ id: this.props.dataset.id });
+    const dataType = this.state.data_type;
+    
+    if (dataType === 'cpf' && e.target.name !== 'name') {
+      e.target.value = formatCpf(e.target.value);
+    } else if (dataType === 'cnpj' && e.target.name !== 'name') {
+      e.target.value = formatCnpj(e.target.value);
+    }
   }
 
   onChangeRadioButton = (e) => {
-    this.setState({data_type: e.target.value});
+    this.setState({ data_type: e.target.value });
   }
 
   onChangeBlacklistButton = (e) => {
-    this.setState({blacklist: e.target.checked});
+    this.setState({ blacklist: e.target.checked });
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     const id = this.props.match.params.id;
-    id ? this.props._onUpdateDataset(this.state) : this.props._onAddDataset(this.state)
+    const dataType = this.state.data_type;
+    console.log(this.state);
+    console.log(this.props);
+    
+    if (dataType === 'cpf') {
+      if (true) {
+        id ? this.props._onUpdateDataset(this.state) : this.props._onAddDataset(this.state)
+      } else {
+        console.log('cpf invalido');
+      }
+    } else if (dataType === 'cnpj') {
+      if (isCnpj(this.state.dataset)) {
+        id ? this.props._onUpdateDataset(this.state) : this.props._onAddDataset(this.state)
+      } else {
+        console.log('cnpj invalido');
+      };
+    }
+
+    // 
   }
 
   deleteDataset = (e) => {
@@ -116,6 +144,7 @@ class DatasetForm extends Component {
               type="text"
               name="name"
               onChange={this.onChange}
+              maxlength='30'
             />
             <label htmlFor="name" className="form__label">Who Are You?</label>
           </div>
@@ -128,6 +157,7 @@ class DatasetForm extends Component {
               type="text"
               name="dataset"
               onChange={this.onChange}
+              maxlength={this.state.data_type === 'cpf' ? 14 : 18}
             />
             <label htmlFor="cpf" className="form__label">Insert Your CPF</label>
           </div>
