@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Aux from '../../hocs/Aux';
-import DatasetForm from '../datasetForm';
+import Header from '../header/Header';
 import Card from '../card';
 import Select from '../form/select/Select';
 import { orderDatasets } from '../../redux/actions/dataset.actions';
@@ -85,16 +85,7 @@ class Dataset extends Component {
 
     return (
       <Aux>
-        <section className="dataset">
-          <div className="dataset__form-box">
-            <h1 className="heading-primary">
-              <span className="heading-primary__main">Neoway</span>
-              <span className="heading-primary__sub">Save your info to work with us</span>
-            </h1>
-              <Route path="/" exact component={DatasetForm} />
-              <Route path="/record/:id" exact component={DatasetForm} />
-          </div>
-        </section>
+        <Header />
         <section className="filter">
           <div className="filter__box">
             <div className="form__group">
