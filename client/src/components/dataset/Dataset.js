@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Aux from '../../hocs/Aux';
-import Header from '../header/Header';
 import Card from '../card';
-import Select from '../form/select/Select';
+import Filter from '../filter/Filter';
 import { orderDatasets } from '../../redux/actions/dataset.actions';
 import Spinner from '../spinner';
 import './Dataset.scss';
@@ -85,41 +84,7 @@ class Dataset extends Component {
 
     return (
       <Aux>
-        <Header />
-        <section className="filter">
-          <div className="filter__box">
-            <div className="form__group">
-              <Route
-                path="/"
-                exact
-                render={() => (
-                  <Select
-                    name="Order By"
-                    onChange={this.onChange}
-                    options={['Cpf', 'Cnpj']}
-                    id="order"
-                  />
-                )
-                }
-              />
-
-              <Route
-                path="/"
-                exact
-                render={() => (
-                  <Select
-                    name="Filter By"
-                    onChange={this.onChange}
-                    options={['Cpf', 'Cnpj']}
-                    id="filter"
-                  />
-                )
-                }
-              />
-            </div>
-          </div>
-        </section>
-
+        <Filter onChange={this.onChange} />
         <section className="dataset__card-section">
           <Route path="/" exact render={() => cards} />
           <Route path="/record/:id" exact render={() => cards} />
@@ -130,8 +95,6 @@ class Dataset extends Component {
 }
 
 const mapStateToProps = (state) => {
-  
-  // console.log(state.orderDatasets.datasets);
   return {
     dataset: state.getDataset.dataset,
     filteredDatasets: state.orderDatasets.datasets,

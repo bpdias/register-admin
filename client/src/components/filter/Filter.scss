@@ -1,0 +1,17 @@
+@import '../../helpers/stylesheets/Base';
+
+.filter {
+  position: relative;
+  height: 6rem;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  margin-bottom: .4rem;
+
+  &__box {
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+  }
+}

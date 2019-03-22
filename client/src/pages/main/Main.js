@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dataset from '../../components/dataset';
+import Header from '../../components/header';
 import {
     fetchAllDatasets,
 } from '../../redux/actions/dataset.actions';
@@ -15,6 +16,7 @@ class Main extends Component {
   render() {
     return (
       <div className="main">
+        <Header />
         <Dataset datasets={this.props.datasets} />
       </div>
     );
