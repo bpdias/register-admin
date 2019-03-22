@@ -157,7 +157,6 @@ class DatasetForm extends Component {
   render() {
     const name = this.props.dataset.name;
     const dataset = this.props.dataset.dataset;
-    const dataType = this.props.dataset.data_type;
     const id = this.props.match.params.id;
     const isValid = this.state.error.invalid;
     const isNameValid = this.state.nameError.invalid;

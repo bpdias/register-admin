@@ -10,9 +10,45 @@ import Spinner from '../spinner';
 import './Dataset.scss';
 
 class Dataset extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ordered: false,
+      filtered: false,
+    };
+  }
 
   onChange = (e) => {
-    console.log(e.target.value);
+    const dataType = e.target.value.toLowerCase();
+    const filterType = e.target.id;
+    const arr = this.props.datasets;
+
+    if (filterType === 'order') {
+      this.sortDataset(arr, dataType);
+      this.setState({ ordered: true });
+    }
+
+    if (filterType === 'filter') {
+      this.filterDataset(arr, dataType);
+      this.setState({ filtered: true });
+    }
+  }
+
+  sortDataset = (arr, type) => {
+    return arr.sort((a, b) => {
+      if (b.data_type !== type && a.data_type !== type) return 0;
+      if (a.data_type !== type) return 1;
+      if (b.data_type !== type) return -1;
+      return a.dataset - b.dataset;
+    });
+  }
+
+  filterDataset = (arr, type) => {
+    let newArr = [];
+    arr.forEach((element) => {
+      if (element.data_type === type) newArr.push(element);
+    });
+    return newArr;
   }
 
   render() {
@@ -67,6 +103,7 @@ class Dataset extends Component {
                   'Cpf',
                   'Cnpj',
                 ]}
+                id="order"
               />
 
               <Select
@@ -76,6 +113,7 @@ class Dataset extends Component {
                   'Cpf',
                   'Cnpj',
                 ]}
+                id="filter"
               />
 
             </div>

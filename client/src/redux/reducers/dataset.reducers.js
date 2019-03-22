@@ -7,6 +7,8 @@ import {
   FECTH_DATASET_ERROR,
   ADD_DATASET_SUCCESS,
   UPDATE_DATASET_SUCCESS,
+  ORDER_DATASETS_SUCCESS,
+  ORDER_DATASETS_ERROR,
 } from '../constants/dataset.constants';
 
 const defaultAllDatasets = {
@@ -70,19 +72,18 @@ export const allDatasets = (state = defaultAllDatasets, action) => {
 };
 
 export const addDataset = (state = defaultDataset, action) => {
-    switch (action.type) {
-      case ADD_DATASET_SUCCESS:
-        return {
-          ...state,
-          dataset: action.dataset,
-          error: false,
-        };
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case ADD_DATASET_SUCCESS:
+      return {
+        ...state,
+        dataset: action.dataset,
+        error: false,
+      };
+    default:
+      return state;
+  }
 };
 
-  
 export const getDataset = (state = defaultDataset, action) => {
   switch (action.type) {
     case FECTH_DATASET_SUCCESS:
@@ -109,6 +110,22 @@ export const deleteDataset = (state = defaultDataset, action) => {
         isDeleted: true,
       };
     case FECTH_DATASET_ERROR:
+      return {
+        ...state,
+        error: true,
+      };
+    default:
+      return state;
+  }
+};
+
+export const orderDatasets = (state = defaultAllDatasets, action) => {
+  switch (action.type) {
+    case ORDER_DATASETS_SUCCESS:
+      return {
+        ...state,
+      };
+    case ORDER_DATASETS_ERROR:
       return {
         ...state,
         error: true,
