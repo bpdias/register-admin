@@ -1,0 +1,14 @@
+{
+    "__v": 0,
+    "_id": {
+        "$oid": "5c92e8109b802e388a7c8b72"
+    },
+    "blacklist": false,
+    "data_type": "cpf",
+    "dataset": "123",
+    "date": {
+        "$date": "2019-03-21T01:25:36.926Z"
+    },
+    "id": "55a8f900ea7c4f696bcdae4acb890e38a3d7149773c1f7c4684416ce00e35bdd",
+    "name": "Bruno Dias"
+}

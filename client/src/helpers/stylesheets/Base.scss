@@ -17,12 +17,12 @@ $color-success: #4F8A10;
 @keyframes moveInLeft{
   0% {
     opacity: 0;
-    transform: translateY(10rem);
+    transform: translateX(10rem);
   }
 
   80% {
     opacity: 0;
-    transform: translateY(-1rem);
+    transform: translateX(-1rem);
   }
 
   100% {
@@ -31,7 +31,7 @@ $color-success: #4F8A10;
   }
 }
 
-@keyframes moveInLeft{
+@keyframes moveInRight{
   0% {
     opacity: 0;
     transform: translateX(-10rem);
@@ -48,7 +48,7 @@ $color-success: #4F8A10;
   }
 }
 
-@keyframes moveInLeft{
+@keyframes moveInUp{
   0% {
     opacity: 0;
     transform: translateY(3rem);
@@ -103,6 +103,7 @@ $color-success: #4F8A10;
         background-color: transparent;
         border: transparent;
         margin-left: 6rem;
+        color: $color-gray-dark;
         &:hover {
             transform: translateY(-3px);
             border-color: $color-gray-dark;
