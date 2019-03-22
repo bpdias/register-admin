@@ -19,7 +19,13 @@ import {
     UPDATE_DATASET_ERROR,
     DELETE_DATASET_SUCCESS,
     DELETE_DATASET_ERROR,
+    ORDER_DATASETS_SUCCESS,
 } from '../constants/dataset.constants';
+
+const orderDatasetSuccess = datasets => ({
+    type: ORDER_DATASETS_SUCCESS,
+    datasets,
+});
 
 const deleteDatasetSuccess = dataset => ({
     type: DELETE_DATASET_SUCCESS,
@@ -137,4 +143,8 @@ export const deleteDataset = id => ((dispatch) => {
         .catch((err) => {
             dispatch(deleteDatasetError(err));
         });
+});
+
+export const orderDatasets = order => ((dispatch) => {
+    return dispatch(orderDatasetSuccess(order));
 });

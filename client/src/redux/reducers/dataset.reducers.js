@@ -124,6 +124,7 @@ export const orderDatasets = (state = defaultAllDatasets, action) => {
     case ORDER_DATASETS_SUCCESS:
       return {
         ...state,
+        datasets: action.datasets,
       };
     case ORDER_DATASETS_ERROR:
       return {

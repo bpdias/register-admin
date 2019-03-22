@@ -5,7 +5,7 @@ import Aux from '../../hocs/Aux';
 import DatasetForm from '../datasetForm';
 import Card from '../card';
 import Select from '../form/select/Select';
-
+import { orderDatasets } from '../../redux/actions/dataset.actions';
 import Spinner from '../spinner';
 import './Dataset.scss';
 
@@ -29,7 +29,7 @@ class Dataset extends Component {
     }
 
     if (filterType === 'filter') {
-      this.filterDataset(arr, dataType);
+      this.props._onOrderDataset(this.filterDataset(arr, dataType));
       this.setState({ filtered: true });
     }
   }
@@ -44,7 +44,7 @@ class Dataset extends Component {
   }
 
   filterDataset = (arr, type) => {
-    let newArr = [];
+    const newArr = [];
     arr.forEach((element) => {
       if (element.data_type === type) newArr.push(element);
     });
@@ -53,10 +53,12 @@ class Dataset extends Component {
 
   render() {
     let cards = null;
-    if (this.props.datasets && this.props.match.isExact) {
+    let allDatasets = this.props.datasets;
+    if (this.props.filteredDatasets.length > 0) allDatasets = this.props.filteredDatasets;
+    if (allDatasets && this.props.match.isExact) {
       cards = (
         <Aux>
-          {this.props.datasets.map((dataset) => {
+          {allDatasets.map((dataset) => {
             return (
               <Card
                 data={dataset}
@@ -96,26 +98,33 @@ class Dataset extends Component {
         <section className="filter">
           <div className="filter__box">
             <div className="form__group">
-              <Select
-                name="Order By"
-                onChange={this.onChange}
-                options={[
-                  'Cpf',
-                  'Cnpj',
-                ]}
-                id="order"
+              <Route
+                path="/"
+                exact
+                render={() => (
+                  <Select
+                    name="Order By"
+                    onChange={this.onChange}
+                    options={['Cpf', 'Cnpj']}
+                    id="order"
+                  />
+                )
+                }
               />
 
-              <Select
-                name="Filter By"
-                onChange={this.onChange}
-                options={[
-                  'Cpf',
-                  'Cnpj',
-                ]}
-                id="filter"
+              <Route
+                path="/"
+                exact
+                render={() => (
+                  <Select
+                    name="Filter By"
+                    onChange={this.onChange}
+                    options={['Cpf', 'Cnpj']}
+                    id="filter"
+                  />
+                )
+                }
               />
-
             </div>
           </div>
         </section>
@@ -130,9 +139,18 @@ class Dataset extends Component {
 }
 
 const mapStateToProps = (state) => {
+  
+  // console.log(state.orderDatasets.datasets);
   return {
     dataset: state.getDataset.dataset,
+    filteredDatasets: state.orderDatasets.datasets,
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(Dataset))
+const mapDispatchToProps = (dispatch) => {
+  return {
+    _onOrderDataset: data => dispatch(orderDatasets(data)),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dataset));
